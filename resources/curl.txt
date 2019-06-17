@@ -1,0 +1,10 @@
+curl --header "Content-Type: application/json" \
+--request POST \
+--data '{"emisor":"pepito","destino":"juancho","texto":"how is ya, juancho?","leido":"no"}' \
+http://localhost:8081/api/mensaje
+
+curl -H 'Content-Type: application/json' \
+-X PUT -d '{"emisor":"troncho", "destino":"juancho", "texto":"todo bien, juancho?","leido":"no"}' \
+http://localhost:8081/api/mensaje/5d07d9276eb31e3a3ea74f29
+
+{"_id":{"$oid":"5d07d9276eb31e3a3ea74f29"},"emisor":"pepito","destino":"juancho","texto":"how is ya, juancho?","leido":"no"}
