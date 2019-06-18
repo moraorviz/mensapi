@@ -11,7 +11,10 @@ app.use(bodyParser.urlencoded({ extended: true}));
 
 // Variables de entorno.
 app.set('port', 8081);
-app.set('db', 'mongodb://admin:ERUifkEQpPkdfjJW@mercacalle-shard-00-00-3lwrv.mongodb.net:27017,mercacalle-shard-00-01-3lwrv.mongodb.net:27017,mercacalle-shard-00-02-3lwrv.mongodb.net:27017/api?ssl=true&replicaSet=mercacalle-shard-0&authSource=admin&retryWrites=true&w=majority')
+//app.set('db', 'mongodb://admin:ERUifkEQpPkdfjJW@mercacalle-shard-00-00-3lwrv.mongodb.net:27017,mercacalle-shard-00-01-3lwrv.mongodb.net:27017,mercacalle-shard-00-02-3lwrv.mongodb.net:27017/api?ssl=true&replicaSet=mercacalle-shard-0&authSource=admin&retryWrites=true&w=majority')
+
+// Mongo client.
+app.set('db', 'mongodb://localhost:27017')
 
 // Rutas/controladores por lógica.
 require('./routes/rusuarios.js')(app, gestorBD);
