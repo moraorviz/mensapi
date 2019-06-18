@@ -26,12 +26,12 @@ app.set('db', 'mongodb://admin:ERUifkEQpPkdfjJW@mercacalle-shard-00-00-3lwrv.mon
 //app.set('db', 'mongodb://localhost:27017')
 app.set('crypto', crypto);
 app.set('jwt', jwt);
+app.set('clave', 'abcdefg');
 
 // routerUsuarioToken
 var routerUsuarioToken = express.Router();
 routerUsuarioToken.use(function (req, res, next) {
-    // obtener el token, puede ser un parámetro GET , POST o
-    HEADER
+    // obtener el token, puede ser un parámetro GET , POST o HEADER
     var token = req.body.token || req.query.token || req.headers['token'];
     if (token != null) {
         // verificar el token
