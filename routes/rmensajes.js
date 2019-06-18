@@ -1,7 +1,7 @@
 module.exports = function(app, gestorBD) {
 
     app.get('/api/mensaje', function(req, res) {
-        gestorBD.obtenerMensajes( {}, function(mensajes) {
+        gestorBD.obtenerMensajes({}, function(mensajes) {
 
             if (mensajes == null) {
                 res.status(500);

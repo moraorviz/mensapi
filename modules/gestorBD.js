@@ -7,6 +7,46 @@ module.exports = {
         this.app = app;
     },
 
+    insertarUsuario: function(mensaje, funcionCallback) {
+        this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
+
+            if (err) {
+                funcionCallback(null);
+            } else {
+                var collection = db.collection('usuarios');
+                collection.insert(mensaje, function(err, result) {
+
+                    if (err) {
+                        funcionCallback(null);
+                    } else {
+                        funcionCallback(result.ops[0]._id);
+                    }
+                    db.close();
+                });
+            }
+        });
+    },
+
+    obtenerUsuarios: function(mensaje, funcionCallback) {
+        this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
+
+            if (err) {
+                funcionCallback(null);
+            } else {
+                var collection = db.collection('usuarios');
+                collection.find(criterio).toArray(function(err, usuarios) {
+
+                    if(err) {
+                        funcionCallback(null);
+                    } else {
+                        funcionCallback(usuarios);
+                    }
+                    db.close();
+                });
+            }
+        });
+    },
+
     obtenerMensajes: function(criterio, funcionCallback) {
         this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
 
@@ -28,14 +68,13 @@ module.exports = {
     },
    
     insertarMensaje: function (mensaje, funcionCallback) {
-
-        this.mongo.MongoClient.connect(this.app.get('db'), function (err, db) {
+        this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
 
             if (err) {
                 functionCallback(null);
             } else {
                 var collection = db.collection('mensajes');
-                collection.insert(mensaje, function (err, result) {
+                collection.insert(mensaje, function(err, result) {
 
                     if (err) {
                         funcionCallback(null);
