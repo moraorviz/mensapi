@@ -13,7 +13,7 @@ module.exports = function(app, gestorBD) {
                 res.send(JSON.stringify(usuarios));
             }
         })
-    })
+    });
 
     app.post('/api/usuario', function(req, res) {
         var seguro = app.get('crypto').createHmac('sha256', app.get('clave'))
@@ -36,6 +36,35 @@ module.exports = function(app, gestorBD) {
                     mensaje : 'usuario insertado',
                     _id : id
                 });
+            }
+        });
+    });
+
+    app.post('/api/autenticar', function(req, res) {
+        var seguro = app.get('crypto').createHmac('sha256', app.get('clave'))
+            .update(re.body.pasword).digest('hex');
+        var criterio = {
+            email : req.body.email,
+            password : seguro
+        }
+
+        gestorBD.obtenerUsuarios(criterio, function(usuarios) {
+
+            if (usuarios == null || usuarios.length == 0) {
+                res.status(500);
+                res.json({
+                    autenticado : false
+                })
+            } else {
+                var token = app.get('jwt').sign({
+                    usuario : criterio.email,
+                    tiempo : Date.now()/1000
+                }, 'secreto');
+                res.status(200);
+                res.json({
+                    autenticado : true,
+                    token : token
+                })
             }
         });
     });
