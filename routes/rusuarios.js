@@ -41,7 +41,6 @@ module.exports = function(app, gestorBD) {
     });
 
     app.post('/api/autenticar', function(req, res) {
-        console.log('hey men');
         var seguro = app.get('crypto').createHmac('sha256', app.get('clave'))
             .update(req.body.password).digest('hex');
         var criterio = {
@@ -58,7 +57,6 @@ module.exports = function(app, gestorBD) {
                     autenticado : false
                 })
             } else {
-                console.log.apply('hi');
                 var token = app.get('jwt').sign({
                     usuario : criterio.email,
                     tiempo : Date.now()/1000

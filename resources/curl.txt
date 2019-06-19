@@ -14,3 +14,10 @@ http://localhost:8081/api/mensaje/5d07d9276eb31e3a3ea74f29
 {"_id":{"$oid":"5d07d9276eb31e3a3ea74f29"},"emisor":"pepito","destino":"juancho","texto":"how is ya, juancho?","leido":"no"}
 
 // Example GET request
+
+
+// Example POST request to insert a new user
+curl --header "Content-Type: application/json" \
+--request POST \
+--data '{"email":"prueba1@prueba1.com","password":"prueba1pass"}' \
+http://localhost:8081/api/usuario

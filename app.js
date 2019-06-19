@@ -1,16 +1,18 @@
 // Módulos.
 var express = require('express');
 var jwt = require('jsonwebtoken');
+// CORS Requests error.
+var cors = require('cors');
 var app = express();
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Credentials", "true");
-    res.header("Access-Control-Allow-Methods", "POST, GET, DELETE, UPDATE, PUT");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, token");
+    res.header("Access-Control-Allow-Methods", "POST, GET, DELETE, UPDATE, PUT, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Authorization, Accept, token");
     // debemos poner todas las headers que se aceptan. Content-Type , token
     next();
 });
-
+app.use(cors());
 var bodyParser = require('body-parser');
 var mongo = require('mongodb')
 var crypto = require('crypto');
