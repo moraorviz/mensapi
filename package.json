@@ -19,6 +19,6 @@
     "crypto": "^1.0.1",
     "express": "^4.16.1",
     "jsonwebtoken": "^8.5.1",
-    "mongodb": "^2.2.33"
+    "mongodb": "^3.6.1"
   }
 }
